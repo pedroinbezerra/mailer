@@ -1,0 +1,17 @@
+version: '3.3'
+
+services:
+  mailer:
+    container_name: mailer
+    build:
+      context: .
+      args:
+        project: mailer
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    volumes:
+      - .:/opt/mailer
+      - /opt/mailer/node_modules
+    command: npm run start
